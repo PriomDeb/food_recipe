@@ -35,3 +35,24 @@
   font-family: 'roboto', sans-serif;
   letter-spacing: 3px;
 }
+
+
+/* Footer */
+/* ================== */
+
+.footer{
+  color: white;
+  padding: 25px;
+  background: rgba(53, 2, 10, 0.822);
+}
+
+.footer a{
+  text-decoration: none;
+  color: wheat;
+  padding: 10px;
+}
+
+.footer a:hover{
+  color: rgb(204, 185, 150);
+  border-bottom: 2px solid rgb(221, 191, 134);
+}
