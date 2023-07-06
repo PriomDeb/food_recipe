@@ -24,17 +24,13 @@ export const Header = () => {
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link active" aria-current="page">
+                <NavLink to="/" className="nav-link">
                   Home
                 </NavLink>
               </li>
 
               <li className="nav-item">
-                <NavLink
-                  to="/meals"
-                  className="nav-link active"
-                  aria-current="page"
-                >
+                <NavLink to="/meals" className="nav-link">
                   Meals
                 </NavLink>
               </li>
