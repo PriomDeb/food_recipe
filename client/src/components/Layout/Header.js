@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+// import { GiOpenedFoodCan } from "react-icons/gi";
 
 export const Header = () => {
   return (
@@ -19,7 +20,7 @@ export const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to="/" className="navbar-brand">
-              Food Recipe
+              🍔 Food Recipe
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
