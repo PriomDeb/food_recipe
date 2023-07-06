@@ -88,7 +88,7 @@ export const loginController = async(req, res) => {
         if(!match){
             return res.status(200).send({
                 success:false,
-                message:'Invalid message'
+                message:'Invalid password'
             })
         }
 
