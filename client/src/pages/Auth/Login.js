@@ -5,28 +5,22 @@ import { useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
 
-const Register = () => {
-  const [name, SetName] = useState("");
+const Login = () => {
   const [email, SetEmail] = useState("");
-  const [phone, SetPhone] = useState("");
   const [password, SetPassword] = useState("");
-  const [address, SetAddress] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/register", {
-        name,
+      const res = await axios.post("/api/v1/auth/login", {
         email,
         password,
-        phone,
-        address,
       });
 
       if (res.data.success) {
-        navigate("/login");
+        navigate("/");
         toast.success(res.data.message);
       } else {
         toast.error(res.data.message);
@@ -42,48 +36,6 @@ const Register = () => {
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="exampleInputName" className="form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              value={name}
-              onChange={(e) => SetName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="exampleInputName" className="form-label">
-              Phone
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="phone"
-              value={phone}
-              onChange={(e) => SetPhone(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="exampleInputName" className="form-label">
-              Address
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="address"
-              value={address}
-              onChange={(e) => SetAddress(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
             </label>
@@ -95,9 +47,6 @@ const Register = () => {
               onChange={(e) => SetEmail(e.target.value)}
               required
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
 
           <div className="mb-3">
@@ -123,4 +72,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

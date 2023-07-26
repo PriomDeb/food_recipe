@@ -4,6 +4,7 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { PageNotFound } from "./pages/PageNotFound";
 import Register from "./pages/Auth/Register";
+import Login from "./pages/Auth/Login";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
