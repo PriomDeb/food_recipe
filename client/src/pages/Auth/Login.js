@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
+import "../../styles/authStyle.css";
 
 const Login = () => {
   const [email, SetEmail] = useState("");
@@ -32,7 +33,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="register">
+      <div className="form-container">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

@@ -38,7 +38,7 @@ const Register = () => {
 
   return (
     <Layout>
-      <div className="register">
+      <div className="form-container">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -95,9 +95,6 @@ const Register = () => {
               onChange={(e) => SetEmail(e.target.value)}
               required
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
 
           <div className="mb-3">
@@ -112,6 +109,9 @@ const Register = () => {
               onChange={(e) => SetPassword(e.target.value)}
               required
             />
+            <div id="emailHelp" className="form-text">
+              We'll never share your information with anyone else.
+            </div>
           </div>
 
           <button type="submit" className="btn btn-primary">
