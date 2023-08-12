@@ -16,6 +16,8 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AddRecipe from "./pages/Admin/AddRecipe";
 import Users from "./pages/Admin/Users";
 import AddCategory from "./pages/Admin/AddCategory";
+import Favorites from "./pages/user/Favorites";
+import Profile from "./pages/user/Profile";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
 
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
+          <Route path="user/favorites" element={<Favorites />} />
+          <Route path="user/profile" element={<Profile />} />
         </Route>
 
         <Route path="/dashboard" element={<AdminRoute />}>
