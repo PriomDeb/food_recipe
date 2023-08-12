@@ -7,34 +7,26 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import "../../styles/authStyle.css";
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, SetEmail] = useState("");
-  const [password, SetPassword] = useState("");
-
-  // Context
-  const [auth, setAuth] = useAuth();
+  const [newPassword, SetNewPassword] = useState("");
+  const [answer, SetAnswer] = useState("");
 
   const navigate = useNavigate();
-
-  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post("/api/v1/auth/forgot-password", {
         email,
-        password,
+        newPassword,
+        answer,
       });
 
       if (res.data.success) {
-        setAuth({
-          ...auth,
-          user: res.data.user,
-          token: res.data.token,
-        });
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate(location.state || "/");
         toast.success(res.data.message);
+
+        navigate("/login");
       } else {
         toast.error(res.data.message);
       }
@@ -46,7 +38,7 @@ const Login = () => {
   return (
     <Layout>
       <div className="form-container">
-        <h1>Login</h1>
+        <h1>Reset Password</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -63,38 +55,40 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">
+              Type your favorite color
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="answer"
+              value={answer}
+              onChange={(e) => SetAnswer(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
+              Set New Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="password"
-              value={password}
-              onChange={(e) => SetPassword(e.target.value)}
+              id="newPassword"
+              value={newPassword}
+              onChange={(e) => SetNewPassword(e.target.value)}
               required
             />
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Login
+            Reset
           </button>
-
-          <div className="mb-3">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-            >
-              Forgot Password
-            </button>
-          </div>
         </form>
       </div>
     </Layout>
   );
 };
 
-export default Login;
+export default ForgotPassword;

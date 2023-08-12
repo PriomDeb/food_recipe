@@ -11,6 +11,7 @@ const Register = () => {
   const [phone, SetPhone] = useState("");
   const [password, SetPassword] = useState("");
   const [address, SetAddress] = useState("");
+  const [answer, SetAnswer] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ const Register = () => {
         password,
         phone,
         address,
+        answer,
       });
 
       if (res.data.success) {
@@ -93,6 +95,20 @@ const Register = () => {
               id="email"
               value={email}
               onChange={(e) => SetEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="exampleInputName" className="form-label">
+              Type your favorite color (Secret Key)
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="answer"
+              value={answer}
+              onChange={(e) => SetAnswer(e.target.value)}
               required
             />
           </div>

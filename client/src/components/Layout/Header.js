@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 // import { GiOpenedFoodCan } from "react-icons/gi";
 import { useAuth } from "../../context/auth";
 import { Toast, toast } from "react-hot-toast";
+import Dashboard from "./../../pages/user/Dashboard";
 
 export const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -64,7 +65,35 @@ export const Header = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item dropdown">
+                    <NavLink
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {auth?.user?.name}
+                    </NavLink>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink to="/dashboard" className="dropdown-item">
+                          Dashboard
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          onClick={handleLogout}
+                          to="/login"
+                          className="dropdown-item"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+
+                  {/* <li className="nav-item">
                     <NavLink
                       onClick={handleLogout}
                       to="/login"
@@ -72,7 +101,7 @@ export const Header = () => {
                     >
                       Logout
                     </NavLink>
-                  </li>
+                  </li> */}
                 </>
               )}
 
