@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Layout } from "../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 import toast from "react-hot-toast";
 import "../../styles/authStyle.css";
@@ -9,6 +10,9 @@ import "../../styles/authStyle.css";
 const Login = () => {
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
+
+  // Context
+  const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
 
@@ -21,6 +25,11 @@ const Login = () => {
       });
 
       if (res.data.success) {
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
         navigate("/");
         toast.success(res.data.message);
       } else {
