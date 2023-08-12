@@ -97,16 +97,6 @@ export const Header = () => {
                       </li>
                     </ul>
                   </li>
-
-                  {/* <li className="nav-item">
-                    <NavLink
-                      onClick={handleLogout}
-                      to="/login"
-                      className="nav-link"
-                    >
-                      Logout
-                    </NavLink>
-                  </li> */}
                 </>
               )}
 
