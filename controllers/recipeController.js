@@ -98,6 +98,7 @@ export const getRecipes = async (req, res) => {
 
     res.status(200).send({
       success: true,
+      total_recipes: recipes.length,
       message: "Successfully get all recipes",
       recipes,
     });
