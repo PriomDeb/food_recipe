@@ -152,3 +152,21 @@ export const recipeImageController = async (req, res) => {
     });
   }
 };
+
+// Delete Recipe
+export const deleteRecipeController = async (req, res) => {
+  try {
+    await recipeModel.findByIdAndDelete(req.params.rid).select("-image");
+    res.status(200).send({
+      success: true,
+      message: "Recipe deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: true,
+      message: "Error while deleting recipe",
+      error,
+    });
+  }
+};

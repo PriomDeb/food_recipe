@@ -2,6 +2,7 @@ import express from "express";
 import { requireSignIn } from "../middlewares/authMiddleware.js";
 import {
   createRecipeController,
+  deleteRecipeController,
   getRecipes,
   getSingleRecipe,
   recipeImageController,
@@ -21,5 +22,8 @@ router.get("/get-recipe/:slug", getSingleRecipe);
 
 // Get Image
 router.get("/recipe-image/:rid", recipeImageController);
+
+// Delete Recipe
+router.delete("/delete-recipe/:rid", requireSignIn, deleteRecipeController);
 
 export default router;
