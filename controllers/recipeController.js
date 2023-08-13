@@ -134,3 +134,21 @@ export const getSingleRecipe = async (req, res) => {
     });
   }
 };
+
+// Get Image
+export const recipeImageController = async (req, res) => {
+  try {
+    const recipe = await recipeModel.findById(req.params.rid).select("image");
+    if (recipe.image.data) {
+      res.set("Content-type", recipe.image.contentType);
+      return res.status(200).send(recipe.image.data);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting image",
+      error,
+    });
+  }
+};
