@@ -170,3 +170,96 @@ export const deleteRecipeController = async (req, res) => {
     });
   }
 };
+
+// Update Recipe
+export const updateRecipeController = async (req, res) => {
+  try {
+    const {
+      title,
+      slug,
+      category,
+      description,
+      ingredients,
+      instructions,
+      preparationTime,
+      cookingTime,
+      totalTime,
+      servings,
+      difficulty,
+      cuisine,
+      dietaryInformation,
+      calories,
+      nutritionalInformation,
+      author,
+      tags,
+      notes,
+    } = req.fields;
+    const { image } = req.files;
+
+    // Validation
+    switch (true) {
+      case !title:
+        return res.status(400).send({ error: "Title is required." });
+      case !slug:
+        return res.status(400).send({ error: "Slug is required." });
+      case !category:
+        return res.status(400).send({ error: "Category is required." });
+      case !image && image.size > 1000000:
+        return res.status(400).send({ error: "Image is required." });
+      case !description:
+        return res.status(400).send({ error: "Description is required." });
+      case !ingredients:
+        return res.status(400).send({ error: "Ingredients are required." });
+      case !instructions:
+        return res.status(400).send({ error: "Instructions are required." });
+      case !preparationTime:
+        return res.status(400).send({ error: "Preparation time is required." });
+      case !cookingTime:
+        return res.status(400).send({ error: "Cooking time is required." });
+      case !totalTime:
+        return res.status(400).send({ error: "Total time is required." });
+      case !servings:
+        return res.status(400).send({ error: "Servings are required." });
+      case !difficulty:
+        return res.status(400).send({ error: "Difficulty is required." });
+      case !cuisine:
+        return res.status(400).send({ error: "Cuisine is required." });
+      case !nutritionalInformation:
+        return res
+          .status(400)
+          .send({ error: "Nutritional information is required." });
+      case !author:
+        return res.status(400).send({ error: "Author is required." });
+      default:
+        // Your logic for processing the recipe data
+        break;
+    }
+
+    const recipe = await recipeModel.findByIdAndUpdate(
+      req.params.rid,
+      {
+        ...req.fields,
+        slug: slugify(title),
+      },
+      { new: true }
+    );
+    if (image) {
+      recipe.image.data = fs.readFileSync(image.path);
+      recipe.image.contentType = image.type;
+    }
+
+    await recipe.save();
+    res.status(201).send({
+      success: true,
+      message: "Recipe updated successfully",
+      recipe,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while updating recipe",
+    });
+  }
+};

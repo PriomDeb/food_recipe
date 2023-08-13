@@ -6,6 +6,7 @@ import {
   getRecipes,
   getSingleRecipe,
   recipeImageController,
+  updateRecipeController,
 } from "../controllers/recipeController.js";
 import formidable from "express-formidable";
 
@@ -25,5 +26,13 @@ router.get("/recipe-image/:rid", recipeImageController);
 
 // Delete Recipe
 router.delete("/delete-recipe/:rid", requireSignIn, deleteRecipeController);
+
+// Update Recipe
+router.put(
+  "/update-recipe/:rid",
+  requireSignIn,
+  formidable(),
+  updateRecipeController
+);
 
 export default router;
