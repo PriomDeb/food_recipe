@@ -86,3 +86,27 @@ export const createRecipeController = async (req, res) => {
     });
   }
 };
+
+// Get All Recipes
+export const getRecipes = async (req, res) => {
+  try {
+    const recipes = await recipeModel
+      .find({})
+      .select("-image")
+      .limit(12)
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({
+      success: true,
+      message: "Successfully get all recipes",
+      recipes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting all recipes",
+      error: error.message,
+    });
+  }
+};
