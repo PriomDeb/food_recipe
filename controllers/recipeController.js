@@ -92,6 +92,7 @@ export const getRecipes = async (req, res) => {
   try {
     const recipes = await recipeModel
       .find({})
+      .populate("category")
       .select("-image")
       .limit(12)
       .sort({ createdAt: -1 });
@@ -108,6 +109,28 @@ export const getRecipes = async (req, res) => {
       success: false,
       message: "Error in getting all recipes",
       error: error.message,
+    });
+  }
+};
+
+// Get Single Recipe
+export const getSingleRecipe = async (req, res) => {
+  try {
+    const recipe = await recipeModel
+      .findOne({ slug: req.params.slug })
+      .select("-image")
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Single product fetched",
+      recipe,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting single recipe",
+      error,
     });
   }
 };
