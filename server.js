@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import categoryRoute from "./routes/categoryRoute.js";
+import recipeRoutes from "./routes/recipeRoutes.js";
 
 dotenv.config();
 
