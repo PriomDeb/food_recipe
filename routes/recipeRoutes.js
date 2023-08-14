@@ -5,6 +5,7 @@ import {
   deleteRecipeController,
   getRecipes,
   getSingleRecipe,
+  recipeFiltersController,
   recipeImageController,
   updateRecipeController,
 } from "../controllers/recipeController.js";
@@ -34,5 +35,8 @@ router.put(
   formidable(),
   updateRecipeController
 );
+
+// Filter Recipe
+router.post("/recipe-filters", recipeFiltersController);
 
 export default router;

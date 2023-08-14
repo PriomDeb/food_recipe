@@ -263,3 +263,28 @@ export const updateRecipeController = async (req, res) => {
     });
   }
 };
+
+// Filters
+export const recipeFiltersController = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+    let args = {};
+
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.calories = { $gte: radio[0], $lte: radio[1] };
+
+    const recipes = await recipeModel.find(args);
+
+    res.status(200).send({
+      success: true,
+      recipes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while filtering",
+    });
+  }
+};

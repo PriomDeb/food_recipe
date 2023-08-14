@@ -38,8 +38,12 @@ export const HomePage = () => {
     }
   };
   useEffect(() => {
-    getAllRecipes();
-  }, []);
+    if (!checked.length || !radio.length) getAllRecipes();
+  }, [checked.length, radio.length]);
+
+  useEffect(() => {
+    if (checked.length || radio.length) filterRecipe();
+  }, [checked, radio]);
 
   // Get recipes by category
   const handleFilter = (value, id) => {
@@ -52,6 +56,18 @@ export const HomePage = () => {
     setChecked(all);
   };
 
+  // Get filtered recipes
+  const filterRecipe = async () => {
+    try {
+      const { data } = await axios.post(`/api/v1/recipe/recipe-filters`, {
+        checked,
+        radio,
+      });
+      setRecipes(data?.recipes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout>
       <div className="row mt-3">
@@ -94,7 +110,10 @@ export const HomePage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{r.title}</h5>
-                  <p className="card-text">{r.description}</p>
+                  <p className="card-text">
+                    {r.description.substring(0, 40)}...
+                  </p>
+                  <p className="card-text">{r.calories} Cal</p>
                   <button class="btn btn-primary ms-1">See Recipe</button>
                   <button class="btn btn-secondary ms-1">
                     Add to Wishlist
