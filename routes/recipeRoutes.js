@@ -5,8 +5,10 @@ import {
   deleteRecipeController,
   getRecipes,
   getSingleRecipe,
+  recipeCountController,
   recipeFiltersController,
   recipeImageController,
+  recipeListController,
   updateRecipeController,
 } from "../controllers/recipeController.js";
 import formidable from "express-formidable";
@@ -38,5 +40,11 @@ router.put(
 
 // Filter Recipe
 router.post("/recipe-filters", recipeFiltersController);
+
+// Recipe Count
+router.get("/recipe-count", recipeCountController);
+
+// Recipe Per Page
+router.get("/recipe-list/:page", recipeListController);
 
 export default router;

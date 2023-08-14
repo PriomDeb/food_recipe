@@ -288,3 +288,47 @@ export const recipeFiltersController = async (req, res) => {
     });
   }
 };
+
+// Recipe Count
+export const recipeCountController = async (req, res) => {
+  try {
+    const total = await recipeModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      success: true,
+      total: total,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in recipe count",
+      error,
+    });
+  }
+};
+
+// Recipe list based on page
+export const recipeListController = async (req, res) => {
+  try {
+    const perPage = 6;
+    const page = req.params.page ? req.params.page : 1;
+    const recipes = await recipeModel
+      .find({})
+      .select("-image")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({
+      success: true,
+      recipes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in per page fetch",
+      error,
+    });
+  }
+};
