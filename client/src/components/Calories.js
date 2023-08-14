@@ -1,8 +1,8 @@
 export const Calories = [
   {
     _id: 0,
-    name: "50 to 100 Calories",
-    array: [50, 100],
+    name: "0 to 100 Calories",
+    array: [0, 100],
   },
   {
     _id: 1,
