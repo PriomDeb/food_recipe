@@ -26,12 +26,12 @@ export const createRecipeController = async (req, res) => {
     } = req.fields;
     const { image } = req.files;
 
-    // Validation
+    // Add Validation
     switch (true) {
       case !title:
         return res.status(400).send({ error: "Title is required." });
-      case !slug:
-        return res.status(400).send({ error: "Slug is required." });
+      // case !slug:
+      //   return res.status(400).send({ error: "Slug is required." });
       case !category:
         return res.status(400).send({ error: "Category is required." });
       case !image && image.size > 1000000:
@@ -196,12 +196,12 @@ export const updateRecipeController = async (req, res) => {
     } = req.fields;
     const { image } = req.files;
 
-    // Validation
+    // Update Validation
     switch (true) {
       case !title:
         return res.status(400).send({ error: "Title is required." });
-      case !slug:
-        return res.status(400).send({ error: "Slug is required." });
+      // case !slug:
+      //   return res.status(400).send({ error: "Slug is required." });
       case !category:
         return res.status(400).send({ error: "Category is required." });
       case !image && image.size > 1000000:
