@@ -12,6 +12,39 @@ export const HomePage = () => {
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
 
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+
+  const [loading, setLoading] = useState(false);
+
+  // Get total count
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/recipe/recipe-count");
+      setTotal(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (page == 1) return;
+    loadMore();
+  }, [page]);
+
+  // Load more
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/v1/recipe/recipe-list/${page}`);
+      setLoading(false);
+      setRecipes([...recipes, ...data.recipes]);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   // Get all categories
   const getAllCategory = async () => {
     try {
@@ -26,14 +59,20 @@ export const HomePage = () => {
 
   useEffect(() => {
     getAllCategory();
+    getTotal();
   }, []);
 
   // Get Recipes
   const getAllRecipes = async () => {
     try {
-      const { data } = await axios.get("/api/v1/recipe/get-recipe");
+      setLoading(true);
+      // const { data } = await axios.get("/api/v1/recipe/get-recipe");
+      const { data } = await axios.get(`/api/v1/recipe/recipe-list/${page}`);
+      setLoading(false);
+
       setRecipes(data.recipes);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -68,6 +107,7 @@ export const HomePage = () => {
       console.log(error);
     }
   };
+
   return (
     <Layout>
       <div className="row mt-3">
@@ -129,6 +169,19 @@ export const HomePage = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="m-2 p-3">
+            {recipes && recipes.length < total && (
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              >
+                {loading ? "Loading ..." : "Load More"}
+              </button>
+            )}
           </div>
         </div>
       </div>
