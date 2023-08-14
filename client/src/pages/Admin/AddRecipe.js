@@ -76,10 +76,10 @@ const AddRecipe = () => {
       const { data } = axios.post("/api/v1/recipe/add-recipe", recipeData);
 
       if (data?.success) {
+        toast.error(data?.message);
+      } else {
         toast.success("Recipe added successfully.");
         navigate("/dashboard/admin/recipes");
-      } else {
-        toast.error(data?.message);
       }
     } catch (error) {
       console.log(error);
