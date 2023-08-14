@@ -19,6 +19,7 @@ import AddCategory from "./pages/Admin/AddCategory";
 import Favorites from "./pages/user/Favorites";
 import Profile from "./pages/user/Profile";
 import Recipe from "./pages/Admin/Recipe";
+import UpdateRecipe from "./pages/Admin/UpdateRecipe";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="admin/add-category" element={<AddCategory />} />
           <Route path="admin/add-recipe" element={<AddRecipe />} />
+          <Route path="admin/recipe/:slug" element={<UpdateRecipe />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/recipes" element={<Recipe />} />
         </Route>

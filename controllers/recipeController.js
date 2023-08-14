@@ -204,8 +204,8 @@ export const updateRecipeController = async (req, res) => {
       //   return res.status(400).send({ error: "Slug is required." });
       case !category:
         return res.status(400).send({ error: "Category is required." });
-      case !image && image.size > 1000000:
-        return res.status(400).send({ error: "Image is required." });
+      // case !image && image.size > 1000000:
+      //   return res.status(400).send({ error: "Image is required." });
       case !description:
         return res.status(400).send({ error: "Description is required." });
       case !ingredients:
