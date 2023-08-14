@@ -4,6 +4,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Calories } from "../components/Calories";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -16,6 +17,8 @@ export const HomePage = () => {
   const [page, setPage] = useState(1);
 
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   // Get total count
   const getTotal = async () => {
@@ -162,7 +165,12 @@ export const HomePage = () => {
                     {r.description.substring(0, 40)}...
                   </p>
                   <p className="card-text">{r.calories} Cal</p>
-                  <button class="btn btn-primary ms-1">See Recipe</button>
+                  <button
+                    class="btn btn-primary ms-1"
+                    onClick={() => navigate(`/recipe/${r.slug}`)}
+                  >
+                    See Recipe
+                  </button>
                   <button class="btn btn-secondary ms-1">
                     Add to Wishlist
                   </button>

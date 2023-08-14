@@ -21,6 +21,7 @@ import Profile from "./pages/user/Profile";
 import Recipe from "./pages/Admin/Recipe";
 import UpdateRecipe from "./pages/Admin/UpdateRecipe";
 import Search from "./pages/Search";
+import RecipeDetails from "./pages/RecipeDetails";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/recipe/:slug" element={<RecipeDetails />} />
 
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
