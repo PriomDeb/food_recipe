@@ -310,7 +310,7 @@ export const recipeCountController = async (req, res) => {
 // Recipe list based on page
 export const recipeListController = async (req, res) => {
   try {
-    const perPage = 6;
+    const perPage = 8;
     const page = req.params.page ? req.params.page : 1;
     const recipes = await recipeModel
       .find({})
