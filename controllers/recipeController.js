@@ -332,3 +332,28 @@ export const recipeListController = async (req, res) => {
     });
   }
 };
+
+// Recipe Search
+export const searchRecipeController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await recipeModel
+      .find({
+        $or: [
+          { title: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+          { ingredients: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-image");
+
+    res.json(results);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while searching recipe",
+      error,
+    });
+  }
+};
