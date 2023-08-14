@@ -34,7 +34,7 @@ const Recipe = () => {
         <div className="col-md-9 ">
           <h1 className="text-center">All Recipes</h1>
 
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {recipes?.map((r) => (
               <Link
                 key={r._id}
