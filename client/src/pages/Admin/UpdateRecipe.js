@@ -135,6 +135,20 @@ const UpdateRecipe = () => {
     }
   };
 
+  // Delete Recipe
+  const handleDelete = async () => {
+    try {
+      let answer = window.prompt("Are you sure want to delete the recipe ?");
+      if (!answer) return;
+      const { data } = await axios.delete(`/api/v1/recipe/delete-recipe/${id}`);
+      toast.success("Product deleted successfully.");
+      navigate("/dashboard/admin/recipes");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong.");
+    }
+  };
+
   return (
     <Layout>
       <div className="container-fluid m-3 p-3">
@@ -355,6 +369,10 @@ const UpdateRecipe = () => {
             <div className="mb-3">
               <button className="btn btn-primary" onClick={handleUpdate}>
                 Update Recipe
+              </button>
+
+              <button className="btn btn-danger" onClick={handleDelete}>
+                Delete Recipe
               </button>
             </div>
           </div>
