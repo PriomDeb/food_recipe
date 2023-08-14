@@ -13,12 +13,21 @@ const AdminMenu = () => {
           >
             Add Category
           </NavLink>
+
           <NavLink
             to="/dashboard/admin/add-recipe"
             className="list-group-item list-group-item-action"
           >
             Add Recipe
           </NavLink>
+
+          <NavLink
+            to="/dashboard/admin/recipes"
+            className="list-group-item list-group-item-action"
+          >
+            All Recipes
+          </NavLink>
+
           <NavLink
             to="/dashboard/admin/users"
             className="list-group-item list-group-item-action"

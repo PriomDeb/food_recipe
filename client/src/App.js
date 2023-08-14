@@ -18,6 +18,7 @@ import Users from "./pages/Admin/Users";
 import AddCategory from "./pages/Admin/AddCategory";
 import Favorites from "./pages/user/Favorites";
 import Profile from "./pages/user/Profile";
+import Recipe from "./pages/Admin/Recipe";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="admin/add-category" element={<AddCategory />} />
           <Route path="admin/add-recipe" element={<AddRecipe />} />
           <Route path="admin/users" element={<Users />} />
+          <Route path="admin/recipes" element={<Recipe />} />
         </Route>
 
         <Route path="/about" element={<About />} />
