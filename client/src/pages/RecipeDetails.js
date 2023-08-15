@@ -3,6 +3,8 @@ import { Layout } from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useMeal } from "../context/meal";
 
 const RecipeDetails = () => {
   const params = useParams();
@@ -10,6 +12,7 @@ const RecipeDetails = () => {
   const [relatedRecipes, setRelatedRecipes] = useState([]);
 
   const navigate = useNavigate();
+  const [meal, setMeal] = useMeal();
 
   // Initial details
   useEffect(() => {
@@ -135,7 +138,17 @@ const RecipeDetails = () => {
                 </div>
               </div>
             </div>
-            <button className="btn btn-warning ms-1">Add to Meal</button>
+            <button
+              className="btn btn-warning ms-1"
+              class="btn btn-warning ms-1"
+              onClick={() => {
+                setMeal([...meal, recipe]);
+                localStorage.setItem("meal", JSON.stringify([...meal, recipe]));
+                toast.success("Recipe added to meal plan.");
+              }}
+            >
+              Add to Meal
+            </button>
           </div>
         </div>
       </div>
@@ -161,7 +174,16 @@ const RecipeDetails = () => {
                 >
                   See Recipe
                 </button>
-                <button class="btn btn-warning ms-1">Add to Meal</button>
+                <button
+                  class="btn btn-warning ms-1"
+                  onClick={() => {
+                    setMeal([...meal, r]);
+                    localStorage.setItem("meal", JSON.stringify([...meal, r]));
+                    toast.success("Recipe added to meal plan.");
+                  }}
+                >
+                  Add to Meal
+                </button>
               </div>
             </div>
           ))}
