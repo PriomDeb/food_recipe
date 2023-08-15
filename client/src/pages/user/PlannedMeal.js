@@ -69,41 +69,111 @@ const PlannedMeal = () => {
                         className="card-img-top recipe-image"
                         alt={r.title}
                       />
-                    </div>
-                    <div className="col-md-8">
-                      <h4>{r.title}</h4>
-                      <p>{r.description}</p>
-
-                      <div className="detail-item">
-                        <h6 className="detail-title">Preparation Time:</h6>
-                        <p className="detail-value">
-                          {r.preparationTime} minutes
-                        </p>
-                      </div>
-
-                      <div className="detail-item">
-                        <h6 className="detail-title">Dietary Information:</h6>
-                        <p className="detail-value">{r.dietaryInformation}</p>
-                      </div>
-                      <div className="detail-item">
-                        <h6 className="detail-title">Calories:</h6>
-                        <p className="detail-value">{r.calories} kcal</p>
-                      </div>
-                      <div className="detail-item">
-                        <h6 className="detail-title">
-                          Nutritional Information:
-                        </h6>
-                        <p className="detail-value">
-                          {r.nutritionalInformation}
-                        </p>
-                      </div>
-
                       <button
-                        className="btn btn-danger"
+                        className="btn btn-danger mt-4"
                         onClick={() => removeMealRecipe(r._id)}
                       >
                         Remove
+                        <hr />
+                        <h6>Calories: -{r.calories}</h6>
                       </button>
+                    </div>
+
+                    <div className="col-md-12">
+                      {/* <h4>{r.title}</h4>
+                      <p>{r.description}</p> */}
+
+                      <div className="col-md-12">
+                        <div className="recipe-details">
+                          <div className="detail-item">
+                            <h6 className="detail-title">Name:</h6>
+                            <p className="detail-value">{r.title}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Category:</h6>
+                            <p className="detail-value">{r.category?.name}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Description:</h6>
+                            <p className="detail-value">{r.description}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Ingredients:</h6>
+                            <p className="detail-value">{r.ingredients}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Instructions:</h6>
+                            <p className="detail-value">{r.instructions}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Preparation Time:</h6>
+                            <p className="detail-value">
+                              {r.preparationTime} minutes
+                            </p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Cooking Time:</h6>
+                            <p className="detail-value">
+                              {r.cookingTime} minutes
+                            </p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Total Time:</h6>
+                            <p className="detail-value">
+                              {r.totalTime} minutes
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-md-12">
+                        <div className="recipe-details">
+                          <div className="detail-item">
+                            <h6 className="detail-title">Servings:</h6>
+                            <p className="detail-value">{r.servings}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Difficulty:</h6>
+                            <p className="detail-value">{r.difficulty}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Cuisine:</h6>
+                            <p className="detail-value">{r.cuisine}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">
+                              Dietary Information:
+                            </h6>
+                            <p className="detail-value">
+                              {r.dietaryInformation}
+                            </p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Calories:</h6>
+                            <p className="detail-value">{r.calories} kcal</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">
+                              Nutritional Information:
+                            </h6>
+                            <p className="detail-value">
+                              {r.nutritionalInformation}
+                            </p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Author:</h6>
+                            <p className="detail-value">{r.author}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Tags:</h6>
+                            <p className="detail-value">{r.tags}</p>
+                          </div>
+                          <div className="detail-item">
+                            <h6 className="detail-title">Notes:</h6>
+                            <p className="detail-value">{r.notes}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
