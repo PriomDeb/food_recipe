@@ -22,6 +22,19 @@ const MealPage = () => {
     }
   };
 
+  // Total calories
+  const totalCalory = () => {
+    try {
+      let total = 0;
+      meal?.map((item) => {
+        total = total + item.calories;
+      });
+      return total.toLocaleString("en-US");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout>
       MealPage
@@ -83,7 +96,12 @@ const MealPage = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-4">Make Plan</div>
+          <div className="col-md-4 text-center">
+            <h4>Meal Plan Summary</h4>
+            <p>Total| Make Plan</p>
+            <hr />
+            <h4>Total Calories: {totalCalory()}⚡</h4>
+          </div>
         </div>
       </div>
     </Layout>
