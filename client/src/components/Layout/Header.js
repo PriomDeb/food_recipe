@@ -51,11 +51,11 @@ export const Header = () => {
                 </NavLink>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink to="/meals" className="nav-link">
                   Meals
                 </NavLink>
-              </li>
+              </li> */}
 
               {!auth.user ? (
                 <>

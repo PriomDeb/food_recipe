@@ -107,7 +107,7 @@ const MealPage = () => {
                   className="btn btn-outline-warning"
                   onClick={() => navigate("/dashboard/user/profile")}
                 >
-                  Make Plan
+                  Manage Profile
                 </button>
               ) : (
                 <button
