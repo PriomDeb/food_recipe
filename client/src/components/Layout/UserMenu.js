@@ -14,7 +14,7 @@ const UserMenu = () => {
             Profile
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/dashboard/user/add-category"
             className="list-group-item list-group-item-action"
           >
@@ -25,10 +25,10 @@ const UserMenu = () => {
             className="list-group-item list-group-item-action"
           >
             Add Recipe
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
-            to="/dashboard/user/meals"
+            to="/meal"
             className="list-group-item list-group-item-action"
           >
             Planned Meals
