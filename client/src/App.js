@@ -23,6 +23,7 @@ import UpdateRecipe from "./pages/Admin/UpdateRecipe";
 import Search from "./pages/Search";
 import RecipeDetails from "./pages/RecipeDetails";
 import MealPage from "./pages/MealPage";
+import PlannedMeal from "./pages/user/PlannedMeal";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/recipe/:slug" element={<RecipeDetails />} />
 
         <Route path="/meal" element={<MealPage />} />
+        <Route path="/user/planned-meals" element={<PlannedMeal />} />
 
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />

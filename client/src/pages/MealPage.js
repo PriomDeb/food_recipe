@@ -41,7 +41,7 @@ const MealPage = () => {
         <div className="row">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1">
-              {`Hello ${auth?.token && auth?.user?.name}`}
+              {`Hello, ${auth?.token && auth?.user?.name}`}
             </h1>
             <h4 className="text-center">
               {meal?.length > 1
@@ -105,9 +105,9 @@ const MealPage = () => {
               {auth?.token ? (
                 <button
                   className="btn btn-outline-warning"
-                  onClick={() => navigate("/dashboard/user/profile")}
+                  onClick={() => navigate("/user/planned-meals")}
                 >
-                  Manage Profile
+                  See in Details
                 </button>
               ) : (
                 <button

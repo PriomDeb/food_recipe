@@ -28,7 +28,7 @@ const UserMenu = () => {
           </NavLink> */}
 
           <NavLink
-            to="/meal"
+            to="/user/planned-meals"
             className="list-group-item list-group-item-action"
           >
             Planned Meals
