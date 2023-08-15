@@ -231,7 +231,6 @@ export const updateRecipeController = async (req, res) => {
       case !author:
         return res.status(400).send({ error: "Author is required." });
       default:
-        // Your logic for processing the recipe data
         break;
     }
 
