@@ -7,14 +7,17 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/auth";
 import "antd/dist/reset.css";
 import { SearchProvider } from "./context/search";
+import { MealProvider } from "./context/meal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
     <SearchProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <MealProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </MealProvider>
     </SearchProvider>
   </AuthProvider>
 );

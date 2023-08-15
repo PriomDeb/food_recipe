@@ -104,7 +104,7 @@ export const Header = () => {
 
               <li className="nav-item">
                 <NavLink to="/favourites" className="nav-link">
-                  Favourites (0)
+                  Planned Meal (0)
                 </NavLink>
               </li>
             </ul>
