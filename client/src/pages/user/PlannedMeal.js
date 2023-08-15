@@ -37,6 +37,42 @@ const PlannedMeal = () => {
     }
   };
 
+  const allIngredients = () => {
+    try {
+      let ingredients = "";
+      meal?.map((item) => {
+        ingredients = ingredients + item.ingredients;
+      });
+      return ingredients.toLocaleString("en-US");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const allRecipes = () => {
+    try {
+      let ingredients = "";
+      meal?.map((item) => {
+        ingredients = ingredients + item.title + ", ";
+      });
+      return ingredients.toLocaleString("en-US");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const allNutrition = () => {
+    try {
+      let ingredients = "";
+      meal?.map((item) => {
+        ingredients = ingredients + item.nutritionalInformation + ". ";
+      });
+      return ingredients.toLocaleString("en-US");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout>
       <div className="container-fluid m-3 p-3">
@@ -44,26 +80,65 @@ const PlannedMeal = () => {
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-9 p-4">
-            <div className="row">
-              <div className="col-md-12">
-                <h1 className="text-center bg-light p-2 mb-1">
-                  {`Hello ${auth?.token && auth?.user?.name}`}
-                </h1>
-                <h4 className="text-center">
-                  {meal?.length > 1
-                    ? `You have ${meal.length} recipes in your meal plan ${
-                        auth?.token ? "" : "Please login to make meal plans"
-                      }`
-                    : "You didn't add any recipe to make a meal plan."}
-                </h4>
-              </div>
+
+          <div className="col-md-9 p-4 text-center recipe-details">
+            <div className="col-md-12 rec">
+              <h1 className="text-center bg-light p-2 mb-1">
+                {`Hello ${auth?.token && auth?.user?.name}`}
+              </h1>
+              <h4 className="text-center">
+                {meal?.length > 1
+                  ? `You have ${meal.length} recipes in your meal plan ${
+                      auth?.token ? "" : "Please login to make meal plans"
+                    }`
+                  : "You didn't add any recipe to make a meal plan."}
+              </h4>
             </div>
-            <div className="row ">
-              <div className="col-md-8 ">
+            <h4>Meal Plan Summary</h4>
+            <p>Total | Get Overall Information</p>
+            <hr />
+            <h6>All Nutrition</h6>
+            <p>{allNutrition()}</p>
+
+            <hr />
+            <h6>All Ingredients for All These Recipes at a Glance</h6>
+            <p>{allIngredients()}</p>
+
+            <hr />
+            <h6>Recipe List</h6>
+            <p>{allRecipes()}</p>
+
+            <hr />
+            <h4>Total Calories: {totalCalory()}⚡</h4>
+            <div className="mb-5">
+              {auth?.token ? (
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={() => navigate("/")}
+                >
+                  🍅 Add More
+                </button>
+              ) : (
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={() =>
+                    navigate("/login", {
+                      state: "/meal",
+                    })
+                  }
+                >
+                  Login to make meal plan
+                </button>
+              )}
+            </div>
+
+            <div className="row"></div>
+            <div className="row mt-2 d-flex justify-content-center">
+              <div className="col-md-10 ">
                 {meal?.map((r) => (
                   <div className="row mb-2 card flex-row recipe-details ">
-                    <div className="col-md-4">
+                    <div className=" row mt-2 d-flex justify-content-cente">
+                      <h1>{r.title}</h1>
                       <img
                         src={`/api/v1/recipe/recipe-image/${r._id}`}
                         className="card-img-top recipe-image"
@@ -179,18 +254,29 @@ const PlannedMeal = () => {
                 ))}
               </div>
               <div className="col-md-4 text-center">
-                <h4>Meal Plan Summary</h4>
-                <p>Total| Make Plan</p>
+                {/* <h4>Meal Plan Summary</h4>
+                <p>Total | Get Overall Information</p>
                 <hr />
-                <h4>Total Calories: {totalCalory()}⚡</h4>
+                <h6>All Nutrition</h6>
+                <p>{allNutrition()}</p>
 
+                <hr />
+                <h6>All Ingredients for All These Recipes at a Glance</h6>
+                <p>{allIngredients()}</p>
+
+                <hr />
+                <h6>Recipe List</h6>
+                <p>{allRecipes()}</p> */}
+
+                {/* <hr />
+                <h4>Total Calories: {totalCalory()}⚡</h4>
                 <div className="mb-5">
                   {auth?.token ? (
                     <button
                       className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
+                      onClick={() => navigate("/")}
                     >
-                      Manage Profile
+                      🍅 Add More
                     </button>
                   ) : (
                     <button
@@ -204,7 +290,7 @@ const PlannedMeal = () => {
                       Login to make meal plan
                     </button>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
