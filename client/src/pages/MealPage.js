@@ -37,7 +37,6 @@ const MealPage = () => {
 
   return (
     <Layout>
-      MealPage
       <div className="container">
         <div className="row">
           <div className="col-md-12">
