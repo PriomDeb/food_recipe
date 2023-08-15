@@ -171,7 +171,7 @@ export const HomePage = () => {
                   >
                     See Recipe
                   </button>
-                  <button class="btn btn-secondary ms-1">Add to Meal</button>
+                  <button class="btn btn-warning ms-1">Add to Meal</button>
                 </div>
               </div>
             ))}
@@ -179,7 +179,7 @@ export const HomePage = () => {
           <div className="m-2 p-3">
             {recipes && recipes.length < total && (
               <button
-                className="btn btn-warning"
+                className="btn btn-dark"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
