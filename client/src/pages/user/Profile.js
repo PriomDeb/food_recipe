@@ -17,7 +17,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/register", {
+      const { data } = await axios.put("/api/v1/auth/profile", {
         name,
         email,
         password,
@@ -25,10 +25,15 @@ const Profile = () => {
         address,
       });
 
-      if (res.data.success) {
-        toast.success(res.data.message);
+      if (data?.error) {
+        toast.error(data?.error);
       } else {
-        toast.error(res.data.message);
+        setAuth({ ...auth, user: data?.updatedUser });
+        let ls = localStorage.getItem("auth");
+        ls = JSON.parse(ls);
+        ls.user = data.updatedUser;
+        localStorage.setItem("auth", JSON.stringify(ls));
+        toast.success("Profile updated successfully.");
       }
     } catch (error) {
       console.log(error);
@@ -65,7 +70,6 @@ const Profile = () => {
                     id="name"
                     value={name}
                     onChange={(e) => SetName(e.target.value)}
-                    required
                   />
                 </div>
 
@@ -93,7 +97,6 @@ const Profile = () => {
                     id="address"
                     value={address}
                     onChange={(e) => SetAddress(e.target.value)}
-                    required
                   />
                 </div>
 
@@ -107,7 +110,6 @@ const Profile = () => {
                     id="email"
                     value={email}
                     onChange={(e) => SetEmail(e.target.value)}
-                    required
                     disabled
                   />
                 </div>
@@ -122,7 +124,6 @@ const Profile = () => {
                     id="password"
                     value={password}
                     onChange={(e) => SetPassword(e.target.value)}
-                    required
                   />
                 </div>
 
