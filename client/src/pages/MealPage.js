@@ -118,7 +118,7 @@ const MealPage = () => {
                     })
                   }
                 >
-                  Login to make meal plan
+                  Login to see more meal plan details
                 </button>
               )}
             </div>
