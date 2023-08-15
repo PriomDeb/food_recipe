@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Layout } from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RecipeDetails = () => {
   const params = useParams();
   const [recipe, setRecipe] = useState({});
+  const [relatedRecipes, setRelatedRecipes] = useState([]);
+
+  const navigate = useNavigate();
 
   // Initial details
   useEffect(() => {
@@ -19,6 +23,19 @@ const RecipeDetails = () => {
         `/api/v1/recipe/get-recipe/${params.slug}`
       );
       setRecipe(data?.recipe);
+      getSimilarRecipe(data?.recipe._id, data?.recipe.category._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Get similar recipes
+  const getSimilarRecipe = async (rid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/recipe/related-recipe/${rid}/${cid}`
+      );
+      setRelatedRecipes(data?.recipes);
     } catch (error) {
       console.log(error);
     }
@@ -106,10 +123,38 @@ const RecipeDetails = () => {
               <h6 className="detail-title">Notes:</h6>
               <p className="detail-value">{recipe.notes}</p>
             </div>
+            <button class="btn btn-secondary ms-1">Add to Meal</button>
           </div>
         </div>
       </div>
-      <div className="row">Similar Recipes</div>
+      <div className="detail-item">
+        <h1>Similar Recipes</h1>
+      </div>
+      <div className="row">
+        <div className="d-flex flex-wrap">
+          {relatedRecipes?.map((r) => (
+            <div className="card m-2" style={{ width: "18rem" }}>
+              <img
+                src={`/api/v1/recipe/recipe-image/${r._id}`}
+                className="card-img-top"
+                alt={r.title}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{r.title}</h5>
+                <p className="card-text">{r.description.substring(0, 40)}...</p>
+                <p className="card-text">{r.calories} Cal</p>
+                <button
+                  class="btn btn-primary ms-1"
+                  onClick={() => navigate(`/recipe/${r.slug}`)}
+                >
+                  See Recipe
+                </button>
+                <button class="btn btn-secondary ms-1">Add to Meal</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 };

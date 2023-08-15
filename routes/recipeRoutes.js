@@ -9,6 +9,7 @@ import {
   recipeFiltersController,
   recipeImageController,
   recipeListController,
+  relatedRecipeController,
   searchRecipeController,
   updateRecipeController,
 } from "../controllers/recipeController.js";
@@ -50,5 +51,8 @@ router.get("/recipe-list/:page", recipeListController);
 
 // Search Recipe
 router.get("/search/:keyword", searchRecipeController);
+
+// Similar Recipe
+router.get("/related-recipe/:rid/:cid", relatedRecipeController);
 
 export default router;

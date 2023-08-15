@@ -357,3 +357,30 @@ export const searchRecipeController = async (req, res) => {
     });
   }
 };
+
+// Similar Recipe
+export const relatedRecipeController = async (req, res) => {
+  try {
+    const { rid, cid } = req.params;
+    const recipes = await recipeModel
+      .find({
+        category: cid,
+        _id: { $ne: rid },
+      })
+      .select("-image")
+      .limit(4)
+      .populate("category");
+
+    res.status(200).send({
+      success: true,
+      recipes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while getting similar recipe",
+      error,
+    });
+  }
+};
