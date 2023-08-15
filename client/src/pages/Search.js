@@ -39,9 +39,7 @@ const Search = () => {
                   >
                     See Recipe
                   </button>
-                  <button class="btn btn-secondary ms-1">
-                    Add to Wishlist
-                  </button>
+                  <button class="btn btn-warning ms-1">Add to Meal</button>
                 </div>
               </div>
             ))}
