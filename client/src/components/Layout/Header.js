@@ -5,9 +5,15 @@ import { useAuth } from "../../context/auth";
 import { Toast, toast } from "react-hot-toast";
 import Dashboard from "./../../pages/user/Dashboard";
 import SearchInput from "../Form/SearchInput";
+import { useMeal } from "../../context/meal";
+
+import { Badge } from "antd";
 
 export const Header = () => {
   const [auth, setAuth] = useAuth();
+
+  const [meal] = useMeal();
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -103,9 +109,11 @@ export const Header = () => {
               )}
 
               <li className="nav-item">
-                <NavLink to="/favourites" className="nav-link">
-                  Planned Meal (0)
-                </NavLink>
+                <Badge count={meal?.length} showZero>
+                  <NavLink to="/meal" className="nav-link">
+                    Planned Meal
+                  </NavLink>
+                </Badge>
               </li>
             </ul>
           </div>

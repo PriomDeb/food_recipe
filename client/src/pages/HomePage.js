@@ -5,6 +5,8 @@ import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Calories } from "../components/Calories";
 import { useNavigate } from "react-router-dom";
+import { useMeal } from "../context/meal";
+import { Toast, toast } from "react-hot-toast";
 
 export const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -19,6 +21,8 @@ export const HomePage = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const [meal, setMeal] = useMeal();
 
   // Get total count
   const getTotal = async () => {
@@ -171,7 +175,19 @@ export const HomePage = () => {
                   >
                     See Recipe
                   </button>
-                  <button class="btn btn-warning ms-1">Add to Meal</button>
+                  <button
+                    class="btn btn-warning ms-1"
+                    onClick={() => {
+                      setMeal([...meal, r]);
+                      localStorage.setItem(
+                        "meal",
+                        JSON.stringify([...meal, r])
+                      );
+                      toast.success("Recipe added to meal plan.");
+                    }}
+                  >
+                    Add to Meal
+                  </button>
                 </div>
               </div>
             ))}
