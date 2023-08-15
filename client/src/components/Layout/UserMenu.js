@@ -28,10 +28,10 @@ const UserMenu = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/user/favorites"
+            to="/dashboard/user/meals"
             className="list-group-item list-group-item-action"
           >
-            Favorites
+            Planned Meals
           </NavLink>
         </div>
       </div>
