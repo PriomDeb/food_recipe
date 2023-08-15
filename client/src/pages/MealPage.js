@@ -100,6 +100,28 @@ const MealPage = () => {
             <p>Total| Make Plan</p>
             <hr />
             <h4>Total Calories: {totalCalory()}⚡</h4>
+
+            <div className="mb-5">
+              {auth?.token ? (
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={() => navigate("/dashboard/user/profile")}
+                >
+                  Make Plan
+                </button>
+              ) : (
+                <button
+                  className="btn btn-outline-warning"
+                  onClick={() =>
+                    navigate("/login", {
+                      state: "/meal",
+                    })
+                  }
+                >
+                  Login to make meal plan
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
